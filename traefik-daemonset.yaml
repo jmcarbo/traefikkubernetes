@@ -72,19 +72,27 @@ metadata:
   name: traefik-ingress-service
   namespace: kube-system
 spec:
+  externalTrafficPolicy: Local
   selector:
     k8s-app: traefik-ingress-lb
   ports:
     - protocol: TCP
+      #port: 12080
       nodePort: 32080
+      #targetPort: 80
       port: 80
       name: web
     - protocol: TCP
+      #port: 12443 
       nodePort: 32443 
       port: 443
+      #targetPort: 443
       name: webs
     - protocol: TCP
+      #port: 12081
       nodePort: 32081
+      #targetPort: 8080
       port: 8080
       name: admin
   type: NodePort
+  #type: LoadBalancer
